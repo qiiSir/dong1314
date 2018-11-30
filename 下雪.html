@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-decoration: none
+	}
+	html,body,#box{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541482043235&di=62f90baf944fcc4a26d9ac309f50e1ac&imgtype=jpg&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D3891452497%2C2117814622%26fm%3D214%26gp%3D0.jpg')center center no-repeat;
+background-size: 100% 100%;
+-moz-background-size: 100% 100%;
+-webkit-background-size: 100% 100%;
+
+
+	}
+	.xue{
+		background: #fff;
+		border-radius: 50%;
+		position: absolute;
+		top: -10px;
+	}
+</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+	function xuehua(){
+     this.div=document.createElement("div");
+     this.w=Math.floor(Math.random()*3+1);
+     this.l=Math.floor(Math.random()*2500-600)
+     this.s=Math.floor(Math.random()*30+10)
+     this.t=Math.floor(Math.random()*3+1)
+     this.f=Math.floor(Math.random()*3+1)
+     this.dom()
+   this.run()
+   
+	}
+	xuehua.prototype.dom=function(){
+      this.div.className='xue'
+      this.div.style.width=this.w+'px'
+      this.div.style.height=this.w+'px'
+      this.div.style.left=this.l+'px'
+     document.getElementById('box').appendChild(this.div) 
+	}
+	xuehua.prototype.run=function(){
+		var that=this
+
+		var time=setInterval(function(){
+			var top=that.div.offsetTop+that.t
+			var left=that.div.offsetLeft+that.f
+         that.div.style.top=top+'px'
+         that.div.style.left=left+'px'
+         if(top>620){
+         	clearInterval(time)
+         	document.getElementById('box').removeChild(that.div)
+         }
+		},this.s)
+ 
+	}
+	setInterval(function(){
+	new xuehua();
+	},300)
+
+</script>
+</html>
